@@ -24,7 +24,8 @@ a simple library to get Brazilian phone area code by cities.
 
     to test run:
 
-    ```$ npm test```
+    ```$ nom install && npm test```
 * Contacts
 
     pedro.leao@gmail.com
+

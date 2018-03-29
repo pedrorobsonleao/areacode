@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/pedrorobsonleao/areacode/issues"
   },
-  "homepage": "https://github.com/pedrorobsonleao/areacode#readme"
+  "homepage": "https://github.com/pedrorobsonleao/areacode#readme",
+  "dependencies": {
+    "mocha": "^5.0.5"
+  }
 }
