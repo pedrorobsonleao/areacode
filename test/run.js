@@ -1,10 +1,12 @@
-var assert = require('assert');
-var areacode = require('../phone');
+/* jshint esversion: 6 */
 
-describe('Testing areacode', function () {
-    it('.from("BRAZIL").states /* Show states list from Brazil*/', function () {
-        var states = areacode.from("BRAZIL").states;
-        var STATES = ['AC',
+const assert = require('assert');
+const  areacode = require('../phone');
+
+describe('Testing areacode',  () => {
+    it('.from("BRAZIL").states /* Show states list from Brazil*/',  () => {
+        const states = areacode.from("BRAZIL").states;
+        const STATES = ['AC',
             'AL',
             'AM',
             'AP',
@@ -33,10 +35,10 @@ describe('Testing areacode', function () {
             'TO'];
         assert.equal(states.join(','), STATES.join(','), 'invalid states list');
     });
-    it('.from("BRAZIL").state("TO").cities /* show list of cities from Tocantins in Brazil*/', function () {
-        var cities = areacode.from("BRAZIL").state("TO").cities;
+    it('.from("BRAZIL").state("TO").cities /* show list of cities from Tocantins in Brazil*/',  () => {
+        const cities = areacode.from("BRAZIL").state("TO").cities;
         // console.log(cities);
-        var CITIES = ['ABREULANDIA',
+        const CITIES = ['ABREULANDIA',
             'AGUIARNOPOLIS',
             'ALIANCA DO TOCANTINS',
             'ALMAS',
@@ -179,40 +181,45 @@ describe('Testing areacode', function () {
         assert.equal(cities.join(','), CITIES.join(','), 'invalid cities list');
     });
 
-    it('.from("BRAZIL").state("SP").city("osasco").code /* get area code from Osasco, SP, Brazil */', function () {
-        var ddd = areacode.from("BRAZIL").state("SP").city("Osasco").code;
+    it('.from("BRAZIL").state("SP").city("osasco").code /* get area code from Osasco, SP, Brazil */',  () => {
+        const ddd = areacode.from("BRAZIL").state("SP").city("Osasco").code;
         assert.equal(ddd, 11, 'invalid area code ' + ddd);
     });
 
-    it('.from("BRAZIL").state("DF").city("brasilia").code /* get area code from Brasilia, DF, Brazil */', function () {
-        var ddd = areacode.from("BRAZIL").state("DF").city("Brasilia").code;
+    it('.from("BRAZIL").state("DF").city("brasilia").code /* get area code from Brasilia, DF, Brazil */',  () => {
+        const ddd = areacode.from("BRAZIL").state("DF").city("Brasilia").code;
         assert.equal(ddd, 61, 'invalid area code ' + ddd);
     });
 
-    it('.from("BRAZIL").state("SP").city("suzano").code /* get area code from Suzano, SP, Brazil */', function () {
-        var ddd = areacode.from("BRAZIL").state("SP").city("Suzano").code;
+    it('.from("BRAZIL").state("SP").city("suzano").code /* get area code from Suzano, SP, Brazil */',  () => {
+        const ddd = areacode.from("BRAZIL").state("SP").city("Suzano").code;
         assert.equal(ddd, 11, 'invalid area code ' + ddd);
     });
 
-    it('.from("BRAZIL").state("SP").city("São Jose dos Campos").code /* get area code from São Jose dos Campos, SP, Brazil */', function () {
-        var ddd = areacode.from("BRAZIL").state("SP").city("São Jose dos Campos").code;
+    it('.from("BRAZIL").state("SP").city("São Jose dos Campos").code /* get area code from São Jose dos Campos, SP, Brazil */',  () => {
+        const ddd = areacode.from("BRAZIL").state("SP").city("São Jose dos Campos").code;
         assert.equal(ddd, 12, 'invalid area code ' + ddd);
     });
 
-    it('.from("Brasil").state("SP").city("São Paulo").parse("+55 (11) 9-7936-6143") /* clean invalid chars in phone number*/', function () {
-        var phone = areacode.from("Brasil").state("SP").city("São Paulo").parse("+55 (11) 9-7936-6143");
+    it('.from("Brasil").state("SP").city("São Paulo").parse("+55 (11) 9-7936-6143") /* clean invalid chars in phone number*/',  () => {
+        const phone = areacode.from("Brasil").state("SP").city("São Paulo").parse("+55 (11) 9-7936-6143");
         assert.equal(phone, 5511979366143, 'invalid phone parse ' + phone);
     });
 
-    it('.from("Brasil").state("SP").city("São Paulo").parse("0-800-77-3801   ") /* clean invalid chars in phone number*/', function () {
-        var phone = areacode.from("Brasil").state("SP").city("São Paulo").parse("0-800-77-3801   ");
+    it('.from("Brasil").state("SP").city("São Paulo").parse("0-800-77-3801   ") /* clean invalid chars in phone number*/',  () => {
+        const phone = areacode.from("Brasil").state("SP").city("São Paulo").parse("0-800-77-3801   ");
         assert.equal(phone, 800773801, 'invalid phone parse ' + phone);
     });
 
-    it('.from("Brasil").state("SP").city("São Paulo").parse("7-3801   ") /* clean invalid chars in phone number*/', function () {
-        var phone = areacode.from("Brasil").state("SP").city("São Paulo").parse("7-3801   ");
+    it('.from("Brasil").state("SP").city("São Paulo").parse("7-3801   ") /* clean invalid chars in phone number*/',  () => {
+        const phone = areacode.from("Brasil").state("SP").city("São Paulo").parse("7-3801   ");
         assert.equal(phone, undefined, 'invalid phone parse ' + phone);
     });
+
+    it('.from("Brasil").state("SP").city("São Paulo").object /* get city object*/', () => {
+        const obj = areacode.from("Brasil").state("SP").city("São Paulo").object;
+        assert.equal(JSON.stringify(obj),'{"normalized":"SAO PAULO","capitalized":"São Paulo","areaCode":"11"}');
+    }  );
 });
 /*
 console.log(":: Phone Parse");
